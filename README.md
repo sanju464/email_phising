@@ -1,190 +1,129 @@
-Phishing Email Detection using TF-IDF & Naive Bayes
+# 🔐 Email Phishing Detection using Machine Learning
 
+## 🚀 Overview
 
+This project detects phishing emails using machine learning by analyzing textual content.
 
+It uses TF-IDF vectorization and a Naive Bayes classifier to classify emails as **phishing** or **legitimate**.
 
+---
 
+## 🎯 Problem
 
+Phishing emails are a major cybersecurity threat, often used to steal credentials or sensitive information.
 
+Detecting them automatically is critical for improving email security systems.
 
-A Machine Learning project that detects phishing emails using Natural Language Processing (NLP) techniques and Multinomial Naive Bayes, achieving 96% accuracy on a real-world phishing dataset.
+---
 
-🚀 Project Overview
+## 🧠 Approach
 
-Phishing emails are a major cybersecurity threat. This project builds a text classification model that automatically predicts whether an email is:
+### 1. Dataset
 
-✅ Legitimate (0)
+* Source: Kaggle phishing email dataset
+* Multiple datasets combined (Enron, SpamAssassin, etc.)
+* Text column: `text_combined`
+* Labels:
 
-⚠️ Phishing (1)
+  * `0` → Legitimate
+  * `1` → Phishing
 
-The model uses:
+---
 
-TF-IDF Vectorization
+### 2. Preprocessing
 
-Multinomial Naive Bayes
+* Train-test split (80/20, stratified)
+* Text cleaned and vectorized using TF-IDF
 
-Stratified Train-Test Split
+---
 
-Performance Evaluation using Precision, Recall, and F1-score
+### 3. Feature Engineering
 
-📊 Dataset
+* TF-IDF with:
 
-Dataset: Phishing Email Dataset
+  * Stopword removal
+  * Max features: 5000
 
-Features:
+---
 
-text_combined → Full email content
+### 4. Model
 
-label
+* Multinomial Naive Bayes
+* Trained on TF-IDF features
 
-0 = Legitimate
+---
 
-1 = Phishing
+## 📊 Results
 
-Dataset downloaded using:
+```text id="res1"
+Accuracy: 96%
+Precision (Phishing): 0.98
+Recall (Phishing): 0.95
+F1-score: 0.96
+```
 
-kagglehub.dataset_download("naserabdullahalam/phishing-email-dataset")
+👉 Strong performance with balanced precision and recall.
 
-🛠 Tech Stack
+---
 
-Python
+## 📊 Example Predictions
 
-Pandas
-
-Scikit-learn
-
-TF-IDF (TfidfVectorizer)
-
-Multinomial Naive Bayes
-
-Matplotlib (optional for visualization)
-
-🧠 Machine Learning Pipeline
-1️⃣ Data Loading
-df = pd.read_csv("phishing_email.csv")
-
-2️⃣ Train-Test Split
-
-80% Training
-
-20% Testing
-
-Stratified sampling used
-
-train_test_split(test_size=0.2, stratify=y)
-
-3️⃣ TF-IDF Vectorization
-
-Converts text into numerical features.
-
-TfidfVectorizer(stop_words='english', max_features=5000)
-
-4️⃣ Model Training
-MultinomialNB()
-
-5️⃣ Model Evaluation
-classification_report(y_test, y_pred)
-
-📈 Model Performance
-              precision    recall  f1-score   support
-
-           0       0.94      0.98      0.96      7919
-           1       0.98      0.95      0.96      8579
-
-    accuracy                           0.96     16498
-
-🔎 Key Insights
-
-High precision for phishing detection (0.98)
-
-Strong recall for legitimate emails (0.98)
-
-Balanced F1-score (0.96)
-
-Overall Accuracy: 96%
-
-🧪 Example Predictions
-Example 1
-
+```text id="ex2"
 Input:
-
-Urgent! Your bank account has been suspended. Click here to verify your password immediately.
-
+"Urgent! Your bank account has been suspended. Click here to verify your password."
 
 Output:
-
 Prediction: Phishing
-Confidence: 98.8%
+Confidence: 0.988
+```
 
-Example 2
-
+```text id="ex3"
 Input:
-
-Hi team, please find attached the meeting agenda for tomorrow's discussion.
-
+"Hi team, please find attached the meeting agenda for tomorrow."
 
 Output:
-
 Prediction: Legitimate
-Confidence: 99.3%
+Confidence: 0.993
+```
 
-📂 Project Structure
-📁 phishing-email-detection
- ├── email_phising_using_naive_bayes.ipynb
- ├── phishing_email.csv
- ├── README.md
- └── requirements.txt (optional)
+---
 
-▶️ How to Run
-1️⃣ Clone Repository
-git clone https://github.com/your-username/phishing-email-detection.git
-cd phishing-email-detection
+## 🛠️ Tech Stack
 
-2️⃣ Install Dependencies
+* Python
+* scikit-learn
+* Pandas / NumPy
+* TF-IDF Vectorization
+
+---
+
+## ▶️ How to Run
+
+```bash id="run2"
 pip install pandas scikit-learn kagglehub
+python main.py
+```
 
-3️⃣ Run the Notebook
+---
 
-Open:
+## 📌 Future Improvements
 
-email_phising_using_naive_bayes.ipynb
+* Try advanced models (Random Forest, XGBoost, Transformers)
+* Deploy as API for real-time email scanning
+* Build browser/email client integration
+* Add explainability (why classified as phishing)
 
+---
 
-Run all cells sequentially.
+## 🤝 Why This Project Matters
 
-🔮 Future Improvements
+* Demonstrates applied machine learning
+* Real-world cybersecurity use case
+* End-to-end pipeline: data → model → evaluation
 
-Add Confusion Matrix Visualization
+---
 
-Compare with:
+## 📎 Author
 
-Logistic Regression
+Sanju – ML + Cybersecurity focused developer
 
-Support Vector Machine (SVM)
-
-Add N-grams (bigrams & trigrams)
-
-Deploy using Streamlit or Flask
-
-Upgrade to Deep Learning (LSTM / BERT)
-
-🎯 Learning Outcomes
-
-NLP preprocessing techniques
-
-TF-IDF feature engineering
-
-Naive Bayes classification
-
-Model evaluation & performance analysis
-
-Real-world phishing detection implementation
-
-👨‍💻 Author
-
-Sanju
-Machine Learning Enthusiast
-
-⭐ If You Found This Helpful
-
-Give this repository a ⭐ on GitHub!
